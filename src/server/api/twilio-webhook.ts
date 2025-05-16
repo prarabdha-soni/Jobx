@@ -1,13 +1,14 @@
-import express from 'express';
+import { Router } from 'express';
 import twilio from 'twilio';
 import { JobSeeker } from '../models/JobSeeker';
 import { Job } from '../models/Job';
 import { Application } from '../models/Application';
+import { RequestHandler } from '../types/express';
 
-const router = express.Router();
+const router = Router();
 
 // Initialize Twilio client only if credentials are available
-let client: any = null;
+let client: twilio.Twilio | null = null;
 if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN) {
   client = twilio(
     process.env.TWILIO_ACCOUNT_SID,
@@ -15,7 +16,7 @@ if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN) {
   );
 }
 
-router.post('/webhook', async (req, res) => {
+const webhookHandler: RequestHandler = async (req, res) => {
   try {
     // If Twilio is not configured, return a message
     if (!client) {
@@ -65,7 +66,7 @@ router.post('/webhook', async (req, res) => {
           }).limit(3);
 
           const jobsList = matchingJobs.map((job, index) => 
-            `${index + 1}. ${job.title} at ${job.companyName}\n`
+            `${index + 1}. ${job.title} at ${job.companyId}\n`
           ).join('\n');
 
           await client.messages.create({
@@ -117,8 +118,10 @@ router.post('/webhook', async (req, res) => {
     res.status(200).json({ success: true });
   } catch (error) {
     console.error('Webhook error:', error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error instanceof Error ? error.message : 'Unknown error' });
   }
-});
+};
+
+router.post('/webhook', webhookHandler);
 
 export default router;

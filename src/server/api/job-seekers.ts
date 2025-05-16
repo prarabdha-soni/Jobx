@@ -1,10 +1,11 @@
-import express from 'express';
+import { Router } from 'express';
 import { JobSeeker } from '../models/JobSeeker';
+import { RequestHandler } from '../types/express';
 
-const router = express.Router();
+const router = Router();
 
 // Create a new job seeker
-router.post('/', async (req, res) => {
+const createJobSeeker: RequestHandler = async (req, res) => {
   try {
     const { seekerId } = req.body;
     
@@ -19,10 +20,12 @@ router.post('/', async (req, res) => {
     );
 
     res.status(200).json({ success: true, jobSeeker });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error creating job seeker:', error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error instanceof Error ? error.message : 'Unknown error' });
   }
-});
+};
+
+router.post('/', createJobSeeker);
 
 export default router;

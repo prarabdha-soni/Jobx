@@ -4,12 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite\" \"tsx src/server/index.ts\"",
-    "build": "vite build",
+    "dev": "concurrently \"vite\" \"tsx watch src/server/index.ts\"",
+    "build": "tsc -p tsconfig.server.json --skipLibCheck && vite build",
     "start": "node dist/server/index.js",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "tsx src/server/index.ts"
+    "server": "tsx watch src/server/index.ts"
   },
   "dependencies": {
     "dotenv": "^16.4.1",
