@@ -1,5 +1,0 @@
-PORT=5000
-TWILIO_ACCOUNT_SID=ACf479223db62b25d931a001a68256e4a0
-TWILIO_AUTH_TOKEN=a50cb363aae90a5d712fff4b81a96d05
-TWILIO_WHATSAPP_NUMBER=whatsapp:+16264145324
-MONGODB_URI=mongodb+srv://prarabdha:rotation21@jobsearch.4fhmd.mongodb.net/?retryWrites=true&w=majority&appName=jobSearch
