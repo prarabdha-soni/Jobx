@@ -1,5 +1,5 @@
 import React from 'react';
-import { User, Calendar, Plus, Filter } from 'lucide-react';
+import { User, Calendar, Plus } from 'lucide-react';
 
 const CompanyPortalPreview: React.FC = () => {
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ArrowLeft, Search, Bell, User, MessageSquare, Users, Briefcase, Settings, HelpCircle, Filter, ChevronDown } from 'lucide-react';
 
 const PortalPage: React.FC = () => {

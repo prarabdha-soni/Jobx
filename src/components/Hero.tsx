@@ -1,9 +1,8 @@
-import React from 'react';
-import WhatsAppRedirect from './WhatsAppRedirect';
 import { ArrowRight } from 'lucide-react';
+import WhatsAppRedirect from './WhatsAppRedirect';
 import CompanyPortalPreview from './CompanyPortalPreview';
 
-const Hero: React.FC = () => {
+const Hero = () => {
   return (
     <div className="flex flex-col md:flex-row min-h-[90vh] w-full">
       <div className="w-full md:w-1/2 py-10 px-6 md:px-12 lg:px-20 flex flex-col justify-center">
@@ -11,7 +10,7 @@ const Hero: React.FC = () => {
           Let AI find <span className="text-teal-600">jobs</span> and <span className="text-teal-600">talents</span> for you
         </h1>
         <p className="mt-6 text-xl text-slate-600">
-        Meet your AI HR agent—end-to-end talent matching, automated over WhatsApp & AI calls.
+          Meet your AI HR agent—end-to-end talent matching, automated over WhatsApp & AI calls.
         </p>
         
         <div className="mt-10 flex flex-col sm:flex-row gap-4">

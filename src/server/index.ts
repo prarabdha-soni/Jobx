@@ -1,4 +1,3 @@
-import { Express, json } from 'express';
 import express from 'express';
 import { connectDB } from './db';
 import twilioWebhook from './api/twilio-webhook';
@@ -6,8 +5,8 @@ import leaderboard from './api/leaderboard';
 import jobSeekers from './api/job-seekers';
 import { config } from './config';
 
-const app: Express = express();
-app.use(json());
+const app = express();
+app.use(express.json());
 
 // Connect to MongoDB
 connectDB();
