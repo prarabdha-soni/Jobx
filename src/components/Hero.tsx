@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
           Let AI find <span className="text-teal-600">jobs</span> and <span className="text-teal-600">talents</span> for you
         </h1>
         <p className="mt-6 text-xl text-slate-600">
-          Our AI agents handle talent matching via WhatsApp and phone calls
+        Meet your AI HR agent—end-to-end talent matching, automated over WhatsApp & AI calls.
         </p>
         
         <div className="mt-10 flex flex-col sm:flex-row gap-4">
