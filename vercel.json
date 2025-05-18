@@ -15,10 +15,5 @@
   ],
   "env": {
     "MONGODB_URI": "mongodb+srv://prarabdha:rotation21@jobsearch.4fhmd.mongodb.net/?retryWrites=true&w=majority&appName=jobSearch",
-    "WHATSAPP_PHONE_NUMBER_ID": "@whatsapp_phone_number_id",
-    "WHATSAPP_ACCESS_TOKEN": "@whatsapp_access_token",
-    "WHATSAPP_VERIFY_TOKEN": "@whatsapp_verify_token",
-    "WHATSAPP_BUSINESS_ACCOUNT_ID": "@whatsapp_business_account_id",
-    "JWT_SECRET": "@jwt_secret"
   }
 } 
