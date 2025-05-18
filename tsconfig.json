@@ -15,15 +15,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
     "esModuleInterop": true,
-    "composite": true,
-    "types": ["react", "react-dom", "node"],
+    "allowSyntheticDefaultImports": true,
+    "types": ["node", "react", "react-dom"],
     "typeRoots": ["./node_modules/@types", "./src/types"]
   },
   "include": ["src"],
-  "references": [
-    { "path": "./tsconfig.node.json" },
-    { "path": "./tsconfig.server.json" }
-  ]
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

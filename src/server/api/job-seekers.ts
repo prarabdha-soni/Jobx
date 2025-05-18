@@ -22,7 +22,11 @@ const createJobSeeker: RequestHandler = async (req, res) => {
     res.status(200).json({ success: true, jobSeeker });
   } catch (error) {
     console.error('Error creating job seeker:', error);
-    res.status(500).json({ error: error instanceof Error ? error.message : 'Unknown error' });
+    // Ensure we always send a JSON response
+    res.status(500).json({ 
+      error: error instanceof Error ? error.message : 'An unexpected error occurred',
+      details: process.env.NODE_ENV === 'development' ? error : undefined
+    });
   }
 };
 

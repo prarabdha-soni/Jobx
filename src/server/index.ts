@@ -1,21 +1,27 @@
 import express from 'express';
-import { connectDB } from './db';
-import twilioWebhook from './api/twilio-webhook';
-import leaderboard from './api/leaderboard';
-import jobSeekers from './api/job-seekers';
+import mongoose from 'mongoose';
 import { config } from './config';
+import jobSeekersRouter from './api/job-seekers';
+import whatsappWebhookRouter from './api/whatsapp-webhook';
+import leaderboardRouter from './api/leaderboard';
 
 const app = express();
-app.use(express.json());
 
 // Connect to MongoDB
-connectDB();
+mongoose.connect(config.mongoUri)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
-// API routes
-app.use('/api/job-seekers', jobSeekers);
-app.use('/api', twilioWebhook);
-app.use('/api', leaderboard);
+// Middleware
+app.use(express.json());
 
-app.listen(config.port, () => {
-  console.log(`Server running on port ${config.port}`);
+// Routes
+app.use('/api/job-seekers', jobSeekersRouter);
+app.use('/api/webhook', whatsappWebhookRouter);
+app.use('/api/leaderboard', leaderboardRouter);
+
+// Start server
+const port = config.port;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });

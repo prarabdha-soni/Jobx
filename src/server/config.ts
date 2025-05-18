@@ -1,13 +1,17 @@
 import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
-// Load environment variables from the root .env file
+// Load environment variables
 dotenv.config();
 
 export const config = {
-  mongodb: {
-    uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/jobx'
+  port: process.env.PORT || 3000,
+  mongoUri: process.env.MONGODB_URI || 'mongodb://localhost:27017/jobx',
+  whatsapp: {
+    phoneNumberId: process.env.WHATSAPP_PHONE_NUMBER_ID,
+    accessToken: process.env.WHATSAPP_ACCESS_TOKEN,
+    verifyToken: process.env.WHATSAPP_VERIFY_TOKEN,
+    businessAccountId: process.env.WHATSAPP_BUSINESS_ACCOUNT_ID,
+    apiVersion: 'v17.0'
   },
-  port: process.env.PORT || 5000
+  jwtSecret: process.env.JWT_SECRET || 'your-secret-key'
 }; 

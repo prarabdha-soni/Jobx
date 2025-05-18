@@ -6,7 +6,7 @@ interface WhatsAppRedirectProps {
   className?: string;
 }
 
-const WhatsAppRedirect: React.FC<WhatsAppRedirectProps> = ({ type, children, className }) => {
+const WhatsAppRedirect = ({ type, children, className }: WhatsAppRedirectProps): JSX.Element => {
   const handleClick = async () => {
     if (type === 'job') {
       // Generate a unique ID for the job seeker
@@ -23,8 +23,15 @@ const WhatsAppRedirect: React.FC<WhatsAppRedirectProps> = ({ type, children, cla
         });
 
         if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || 'Failed to create job seeker record');
+          const errorText = await response.text();
+          let errorMessage;
+          try {
+            const errorData = JSON.parse(errorText);
+            errorMessage = errorData.error || 'Failed to create job seeker record';
+          } catch {
+            errorMessage = `Server error: ${errorText}`;
+          }
+          throw new Error(errorMessage);
         }
 
         // Redirect to WhatsApp with the seeker ID
@@ -33,7 +40,7 @@ const WhatsAppRedirect: React.FC<WhatsAppRedirectProps> = ({ type, children, cla
         window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
       } catch (error: any) {
         console.error('Error creating job seeker:', error);
-        alert(`Error: ${error.message}\n\nPlease make sure the backend server is running and try again.`);
+        alert(`Error: ${error.message}\n\nPlease try again later or contact support if the issue persists.`);
       }
     } else {
       // Redirect to the company portal
@@ -44,7 +51,7 @@ const WhatsAppRedirect: React.FC<WhatsAppRedirectProps> = ({ type, children, cla
   return (
     <button 
       onClick={handleClick}
-      className={className}
+      className={`w-full sm:w-auto ${className}`}
     >
       {children}
     </button>
