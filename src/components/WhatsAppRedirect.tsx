@@ -13,8 +13,8 @@ const WhatsAppRedirect = ({ type, children, className }: WhatsAppRedirectProps):
       const seekerId = Math.random().toString(36).substring(7);
       
       try {
-        // Create a record through our Netlify function
-        const response = await fetch('/.netlify/functions/job-seekers', {
+        // Create a record through our API
+        const response = await fetch('/api/job-seekers', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
